@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\Admin;
 
@@ -17,6 +18,17 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
+        $admin = Admin::where('email', 'sanekdr@gmail.com')->first(); //  returns the first record found in the database. If no matching model exist, it returns null
+        if($admin == null)
+        {
+            Admin::create([
+              'name' => 'Александр',
+              'email' => 'sanekdr@gmail.com',
+              'password' => Hash::make('password'),
+            ]);
+        }
+
+
     	return view('auth.adminLogin');
     }
 

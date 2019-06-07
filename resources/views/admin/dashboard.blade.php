@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Админка</div>
+                <div class="card-header">Управление сайтом</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,22 +13,27 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    АВТОРИЗОВАН
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
                             <h4>Администраторы</h4>
-                            <ul>
+                            <ul class="list-group list-group-flush">
                                 @foreach($admins as $admin)
-                                    <li>{{ $admin->email }}</li>
+                                    <li class="list-group-item">{{ $admin->email }}</li>
                                 @endforeach
                             </ul>
                         </div>
                         <div class="col-md-4">
-                            <span style="font-size: 20px">Операторы</span>
-                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fa fa-plus"></i></button>
+                            <div class="container">
+                                
+                                <div class="row">
+                                    <div class="col-md-8"><h4>Операторы</h4></div>
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
                             
 
                             {{-- MODAL FOR REGISTERING NEW OPERATOR --}}
@@ -101,19 +106,27 @@
                                     </div>
                                  </div>
                             </div>
-                            <ul>
+                            <ul class="list-group list-group-flush">
                                 @foreach($operators as $operator)
-                                    <li>
-                                        {{ $operator->email }}
-                                    </li>
-    
-                                    <button class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-toggle="modal" data-target=".delete-modal{{$operator->id}}">
-                                            <i class="fa fa-trash"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-toggle="modal" data-target=".update-modal{{$operator->id}}">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
+
+                                    <li class="list-group-item">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <h6>Имя: </h6> {{$operator->name}}
+                                                    <h6>Email: </h6> {{ $operator->email }}
+                                                </div>
                                     
+                                                <div class="col-md-4">
+
+                                                    <button class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-toggle="modal" data-target=".delete-modal{{$operator->id}}">
+                                                            <i class="fa fa-trash"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-toggle="modal" data-target=".update-modal{{$operator->id}}">
+                                                            <i class="fa fa-edit"></i>
+                                                    </button>
+                                                </div>
+                                    </li>
                                     {{-- MODAL FOR DELETING --}}
                                    <div class="modal fade delete-modal{{$operator->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
@@ -128,6 +141,7 @@
                                             <p><span style="font-size: 15px; font-weight: bold;">Вы действительно хотите удалить оператора ? </span></p>
                                             <p> ID: {{ $operator->id }} </p>
                                             <p> EMAIL: {{ $operator->email }} </p>
+                                            <p> Имя: {{ $operator->name }} </p>
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
@@ -222,9 +236,9 @@
                         </div>
                         <div class="col-md-4">
                             <h4>Клиенты</h4>
-                            <ul>
+                            <ul class="list-group list-group-flush">
                                 @foreach($clients as $client)
-                                    <li>{{ $client->email }}</li>
+                                    <li class="list-group-item">{{ $client->email }}</li>
                                 @endforeach
                             </ul>
                         </div>

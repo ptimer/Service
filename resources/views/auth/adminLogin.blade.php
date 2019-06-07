@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('АДМИН ЛОГИН') }}</div>
+                <div class="card-header">{{ __('Авторизация') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin.login.submit') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail адрес') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" v-model="search" @keyup="searchit" autofocus>
@@ -44,11 +44,13 @@
 
                             
                               </div>
+                              {{--
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Запомнить меня') }}
                                     </label>
+                                --}}
                               <div class="text-center mt-4">
 
                                 <button type="submit" class="btn btn-primary">

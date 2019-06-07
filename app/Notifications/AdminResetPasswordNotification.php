@@ -43,7 +43,7 @@ class AdminResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Восстановление пароля.')
+                    ->line('Восстановление пароля (администратор)')
                     ->action('Изменить пароль', route('admin.password.reset', ['token' => $this->token]))
                     ->line('Спасибо!');
     }

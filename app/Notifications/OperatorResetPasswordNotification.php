@@ -43,8 +43,8 @@ class OperatorResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Восстановление пароля оператор.')
-                    ->action('Изменить пароль', route('operator.password.reset', ['token' => $this->token]))
+                    ->line('Восстановление пароля (оператор).')
+                    ->action('Восстановить доступ', route('operator.password.reset', ['token' => $this->token]))
                     ->line('Спасибо!');
     }
 
